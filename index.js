@@ -40,7 +40,7 @@ async function run() {
       res.send(result);
    })
 
-   
+
    const serviceData = client.db('abrarsDine').collection('sixcard');
 
    app.get('/sixcard', async(req, res) =>{
@@ -58,11 +58,11 @@ async function run() {
       res.send(result);
    })
    
-    const itlData = client.db('abrarsDine').collection('italian');
-    const mexData = client.db('abrarsDine').collection('mexican');
-    const japData = client.db('abrarsDine').collection('japanese');
-    const chiData = client.db('abrarsDine').collection('chinese');
-    const thaiData = client.db('abrarsDine').collection('thai');
+    // const itlData = client.db('abrarsDine').collection('italian');
+    // const mexData = client.db('abrarsDine').collection('mexican');
+    // const japData = client.db('abrarsDine').collection('japanese');
+    // const chiData = client.db('abrarsDine').collection('chinese');
+    // const thaiData = client.db('abrarsDine').collection('thai');
     
 
 
@@ -88,13 +88,27 @@ async function run() {
       res.send(result);
     });
 
-      // To update car
+      // To update food
       app.get('/allfood/:id', async(req, res) => {
         const id = req.params.id;
         const query = {_id: new ObjectId(id)}
         const result = await serviceCollection.findOne(query);
         res.send(result);
       })
+
+
+      app.post('/allfood', async(req, res) =>{
+        const newFood = req.body;
+        console.log(newFood);
+        const result = await serviceCollection.insertOne(newFood);
+        res.send(result);
+      })
+
+
+
+
+
+
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
