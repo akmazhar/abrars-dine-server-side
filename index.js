@@ -67,7 +67,6 @@ async function run() {
 
 
       // data from category
-
       app.get('/allfood/:category', async(req, res) => {
         const category = req.params.category
         const query = {category: category}
@@ -78,7 +77,7 @@ async function run() {
 
 
   
-         // get data for details route
+    // get data for details route
     app.get("/allfood/:id", async (req, res) => {
       const id = req.params.id;
       console.log("id", id);
