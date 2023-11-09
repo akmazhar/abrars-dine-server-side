@@ -32,23 +32,32 @@ async function run() {
     await client.connect();
 
 
-    const serviceCollection = client.db('abrarsDine').collection('sixcard');
+    const serviceCollection = client.db('abrarsDine').collection('allfood');
+    
+    
+    const serviceData = client.db('abrarsDine').collection('sixcard');
 
-    app.get('/sixcard', async(req, res) =>{
+
+    app.get('/allfood', async(req, res) =>{
        const cursor = serviceCollection.find();
        const result = await cursor.toArray();
        res.send(result);
     })
 
-
-    
-    const serviceData = client.db('abrarsDine').collection('allfood');
-
-    app.get('/allfood', async(req, res) =>{
+    app.get('/sixcard', async(req, res) =>{
        const cursor = serviceData.find();
        const result = await cursor.toArray();
        res.send(result);
     })
+
+      // data from category
+      app.get('/allfood/:category', async(req, res) => {
+        const category = req.params.category
+        const query = {category: category}
+        const cursor = serviceCollection.find(query);
+        const result = await cursor.toArray();
+        res.send(result);
+      })
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
