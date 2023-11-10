@@ -40,7 +40,7 @@ async function run() {
       res.send(result);
    })
 
-
+  
    const serviceData = client.db('abrarsDine').collection('sixcard');
 
    app.get('/sixcard', async(req, res) =>{
@@ -102,9 +102,15 @@ async function run() {
         const result = await serviceCollection.insertOne(newFood);
         res.send(result);
       })
+      
+      const myAddedFoodCollection = client.db('abrarsDine').collection('myAddedFood');
 
-
-
+      app.post('/myAddedFood', async(req, res) =>{
+        const myAddedFood = req.body;
+        console.log(myAddedFood);
+        const result = await myAddedFoodCollection.insertOne(myAddedFood);
+        res.send(result);
+      })
 
 
 
