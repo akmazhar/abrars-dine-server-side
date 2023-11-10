@@ -96,13 +96,14 @@ async function run() {
       })
 
 
+  
       app.post('/allfood', async(req, res) =>{
-        const newFood = req.body;
-        console.log(newFood);
-        const result = await serviceCollection.insertOne(newFood);
+        const newAllFood = req.body;
+        console.log(newAllFood);
+        const result = await serviceCollection.insertOne(newAllFood);
         res.send(result);
       })
-      
+
       const myAddedFoodCollection = client.db('abrarsDine').collection('myAddedFood');
 
       app.post('/myAddedFood', async(req, res) =>{
